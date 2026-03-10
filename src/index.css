@@ -1,0 +1,141 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 228 70% 5%;
+    --foreground: 210 40% 93%;
+    --card: 228 55% 9%;
+    --card-foreground: 210 40% 93%;
+    --popover: 228 55% 9%;
+    --popover-foreground: 210 40% 93%;
+    --primary: 190 100% 50%;
+    --primary-foreground: 228 70% 5%;
+    --secondary: 228 45% 15%;
+    --secondary-foreground: 210 40% 93%;
+    --muted: 228 35% 14%;
+    --muted-foreground: 215 20% 55%;
+    --accent: 190 80% 40%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 228 30% 18%;
+    --input: 228 30% 18%;
+    --ring: 190 100% 50%;
+    --radius: 0.5rem;
+
+    --sidebar-background: 228 60% 7%;
+    --sidebar-foreground: 210 40% 93%;
+    --sidebar-primary: 190 100% 50%;
+    --sidebar-primary-foreground: 228 70% 5%;
+    --sidebar-accent: 228 45% 15%;
+    --sidebar-accent-foreground: 210 40% 93%;
+    --sidebar-border: 228 30% 18%;
+    --sidebar-ring: 190 100% 50%;
+
+    --glow-cyan: 190 100% 50%;
+    --glow-blue: 220 90% 56%;
+    --surface-glass: 228 50% 12%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+  }
+  code, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer utilities {
+  .glow-text {
+    text-shadow: 0 0 20px hsl(var(--primary) / 0.5), 0 0 40px hsl(var(--primary) / 0.2);
+  }
+  .glow-box {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.15), 0 0 60px hsl(var(--primary) / 0.05);
+  }
+  .glow-border {
+    border: 1px solid hsl(var(--primary) / 0.3);
+    box-shadow: inset 0 0 20px hsl(var(--primary) / 0.05), 0 0 20px hsl(var(--primary) / 0.1);
+  }
+  .glass-panel {
+    background: hsl(var(--surface-glass) / 0.6);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--primary) / 0.1);
+  }
+  .gradient-text {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--glow-blue)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .gradient-primary {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--glow-blue)));
+  }
+  .grid-bg {
+    background-image: 
+      linear-gradient(hsl(var(--primary) / 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--primary) / 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+}
+
+/* Scroll animations */
+.scroll-fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.scroll-fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.scroll-fade-up.delay-1 { transition-delay: 0.1s; }
+.scroll-fade-up.delay-2 { transition-delay: 0.2s; }
+.scroll-fade-up.delay-3 { transition-delay: 0.3s; }
+.scroll-fade-up.delay-4 { transition-delay: 0.4s; }
+.scroll-fade-up.delay-5 { transition-delay: 0.5s; }
+
+/* DNA Helix Animation */
+@keyframes helix-rotate {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(360deg); }
+}
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+@keyframes data-stream {
+  0% { transform: translateY(-100%); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+@keyframes counter-glow {
+  0%, 100% { box-shadow: 0 0 20px hsl(190 100% 50% / 0.1); }
+  50% { box-shadow: 0 0 40px hsl(190 100% 50% / 0.3); }
+}
+
+.animate-helix { animation: helix-rotate 8s linear infinite; }
+.animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-counter-glow { animation: counter-glow 3s ease-in-out infinite; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: hsl(var(--background)); }
+::-webkit-scrollbar-thumb { background: hsl(var(--primary) / 0.3); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(var(--primary) / 0.5); }
